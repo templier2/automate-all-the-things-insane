@@ -10,11 +10,11 @@ spec:
   rules:
     - http:
         paths:
-          - host: {{ .Values.ingress.host }}
-            path: /kiali
+          - path: /kiali
             pathType: Prefix
             backend:
               service:
                 name: kiali
                 port:
                   number: 20001  
+
