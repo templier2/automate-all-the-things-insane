@@ -17,14 +17,6 @@ resource "azurerm_subnet" "internal_aks" {
   resource_group_name  = azurerm_resource_group.automation.name
   virtual_network_name = azurerm_virtual_network.automation.name
   address_prefixes     = ["${cidrsubnet(one(azurerm_virtual_network.automation.address_space), 8, 0)}"]
-
-  delegation {
-    name = "aciDelegation"
-    service_delegation {
-      name    = "Microsoft.ContainerInstance/containerGroups"
-      actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
-    }
-  }
 }
 
 resource "azurerm_network_security_group" "internal_aks" {
