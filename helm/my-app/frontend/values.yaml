@@ -2,7 +2,7 @@ appName: app # This value was modified by the initial-setup python script
 
 service: frontend
 
-host: # This value was modified by the deploy-argocd pipeline
+host: 134.33.224.137 # This value was modified by the deploy-argocd pipeline
 
 port: 80
 
