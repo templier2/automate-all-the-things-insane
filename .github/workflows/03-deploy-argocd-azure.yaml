@@ -1,11 +1,11 @@
-name: 01-Deploy ArgoCD (Azure)
+name: 03-Deploy ArgoCD (Azure)
 
 on:
   workflow_dispatch:
 
 permissions:
   id-token: write # This is required for requesting the JWT
-  contents: read  # This is required for actions/checkout and actions/pull
+  contents: write  # This is required for actions/checkout and actions/pull
 
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
