@@ -32,4 +32,3 @@ ingress:
   ingressClassName: webapprouting.kubernetes.azure.com
   # -- Additional ingress annotations
   annotations: {}
-  host: "kiali.k8s-tests2.tst"
