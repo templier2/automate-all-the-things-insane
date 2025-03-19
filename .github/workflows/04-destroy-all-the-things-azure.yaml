@@ -32,7 +32,7 @@ jobs:
       id: set-context
       uses: azure/aks-set-context@v3
       with:
-        resource-group: 'automate-all-the-things-hardcore-andrei' 
+        resource-group: 'automate-all-the-things-insane-andrei' 
         cluster-name: 'automation-andrei'
 
     - name: Setup kubectl
@@ -45,12 +45,15 @@ jobs:
         # We delete app of apps application
         kubectl delete -n argocd applications.argoproj.io argocd-app-of-apps
 
+        # We also need to remove the finalizers from the Kiali CR for deletion to be successful, it's a known issue (https://kiali.io/docs/installation/installation-guide/install-with-helm/#known-problem-uninstall-hangs-unable-to-delete-the-kiali-cr)
+        kubectl patch kiali kiali -n service-mesh -p '{"metadata":{"finalizers": []}}' --type=merge
+
         # We delete every other application
         kubectl delete -n argocd applications.argoproj.io --all
 
         helm uninstall -n argocd argocd
 
-    # Before deleting all infra we make sure there are no existing ingresses so the terraform destroy isn't messed up by the existance of untracked AWS Application Load Balancers
+  # Before deleting all infra we make sure there are no existing ingresses so the terraform destroy isn't messed up by the existance of untracked AWS Application Load Balancers
     - name: Delete ingresses
       run: | 
         kubectl delete ingress --all --all-namespaces
