@@ -4,7 +4,7 @@ redis_host: automation-andrei-prod.redis.cache.windows.net
 
 deployment:
   image:
-    tag: 2
+    tag: 3
   replicas: 1
     
 secret:
