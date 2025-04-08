@@ -1,10 +1,10 @@
 environment: dev
     
-redis_host: # This value was modified by the deploy-infra pipeline
+redis_host: automation-andrei-dev.redis.cache.windows.net
 
 deployment:
   image:  
-    tag: 0
+    tag: 2
   replicas: 1
 
 secret:
